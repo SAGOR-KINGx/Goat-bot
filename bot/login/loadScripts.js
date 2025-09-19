@@ -40,8 +40,8 @@ module.exports = async function (api, threadModel, userModel, dashBoardModel, gl
 
 	for (const folderModules of folders) {
 		const makeColor = folderModules == "cmds" ?
-			createLine("LOAD COMMANDS") :
-			createLine("LOAD COMMANDS EVENT");
+			createLine("SAGOR LOAD COMMANDS") :
+			createLine("SAGOR LOAD COMMANDS EVENT");
 		console.log(colors.hex("#f5ab00")(makeColor));
 
 		if (folderModules == "cmds") {
@@ -90,7 +90,7 @@ module.exports = async function (api, threadModel, userModel, dashBoardModel, gl
 							if (!existsSync(`${process.cwd()}/node_modules/${packageName}`)) {
 								const wating = setInterval(() => {
 									// loading.info('PACKAGE', `${spinner[count % spinner.length]} Installing package ${packageName} for ${text} ${file}`);
-									loading.info('PACKAGE', `${spinner[count % spinner.length]} Installing package ${colors.yellow(packageName)} for ${text} ${colors.yellow(file)}`);
+									loading.info('SAGOR PACKAGE', `${spinner[count % spinner.length]} Installing package ${colors.yellow(packageName)} for ${text} ${colors.yellow(file)}`);
 									count++;
 								}, 80);
 								try {
@@ -215,11 +215,11 @@ module.exports = async function (api, threadModel, userModel, dashBoardModel, gl
 					error
 				});
 			}
-			loading.info('LOADED', `${colors.green(`${commandLoadSuccess}`)}${commandError.length ? `, ${colors.red(`${commandError.length}`)}` : ''}`);
+			loading.info('SAGOR LOADED', `${colors.green(`${commandLoadSuccess}`)}${commandError.length ? `, ${colors.red(`${commandError.length}`)}` : ''}`);
 		}
 		console.log("\r");
 		if (commandError.length > 0) {
-			log.err("LOADED", getText('loadScripts', 'loadScriptsError', colors.yellow(text)));
+			log.err("SAGOR LOADED", getText('loadScripts', 'loadScriptsError', colors.yellow(text)));
 			for (const item of commandError)
 				console.log(` ${colors.red('✖ ' + item.name)}: ${item.error.message}\n`, item.error);
 		}
