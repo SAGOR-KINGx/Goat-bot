@@ -9,20 +9,24 @@
 		"intervalGetNewCookie": 1440,
 		"notes": "time the system automatically retrieves new cookies from email/password, unit is minute, if you set null, the system will not automatically retrieve new cookies, it saves you from having to manually change your cookie every time it expires. recommended set to 1440 (1day) or 4320 (3day).TO BE ABLE TO USE THIS FEATURE YOU NEED TO ENTER THE ACCOUNT PASSWORD ABOVE"
 	},
-	"antiInbox": false,
+	"antiInbox": true,
 	"language": "en",
 	"notesLanguage": "change to your language with ISO 639-1 code, available languages: vi (Vietnamese), en (English)",
-	"nickNameBot": "GoatBot",
+	"nickNameBot": "SAGOR BOT",
 	"prefix": "-",
-	"api":"https://noobs-api.rf.gd/dipto",
+	"api":"",
 	"adminOnly": {
 		"enable": false,
 		"ignoreCommand": []
 	},
-	"adminBot": [],
+	"adminBot": [
+		"61579792988640"
+	],
 	"whiteListMode": {
 		"enable": false,
-		"whiteListIds": [],
+		"whiteListIds": [
+			"61579792988640"
+		],
 		"notes": "if you enable this feature, only the ids in the whiteListIds list can use the bot"
 	},
 	"whiteListModeThread": {
@@ -41,7 +45,7 @@
 	"timeZone": "Asia/Dhaka",
 	"credentials": {
     "gmailAccount": {
-      "email": "fariasdipto@gmail.com",
+      "email": "",
       "clientId": "356551796908-109qeba7nv0e30u2c7o22gr9podqsiim.apps.googleusercontent.com",
       "clientSecret": "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",
       "refreshToken": "1//04otrr7tUfUAFCgYIARAAGAQSNwF-L9IrnanDeaer7kPniPX_EdWPKNnf4_z7ONCUcR5Jp6_kcSXWKAND0inf-n1Yv1LRryIKNhY"
@@ -136,7 +140,7 @@
 		"updatePresence": true,
 		"listenTyping": true,
 		"logLevel": "error",
-		"selfListen": false,
+		"selfListen": true,
 		"selfListenEvent": true,
 		"autoMarkDelivery": false,
 		"autoReconnect": false,
