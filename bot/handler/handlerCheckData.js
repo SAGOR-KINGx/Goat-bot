@@ -19,7 +19,7 @@ module.exports = async function (usersData, threadsData, event) {
 					return;
 
 				const threadData = await threadsData.create(threadID);
-				log.info("DATABASE", `New Thread: ${threadID} | ${threadData.threadName} | ${config.database.type}`);
+				log.info("SAGOR DATABASE", `New Thread: ${threadID} | ${threadData.threadName} | ${config.database.type}`);
 			}
 			else {
 				await findInCreatingThreadData.promise;
@@ -28,7 +28,7 @@ module.exports = async function (usersData, threadsData, event) {
 		catch (err) {
 			if (err.name != "DATA_ALREADY_EXISTS") {
 				global.temp.createThreadDataError.push(threadID);
-				log.err("DATABASE", getText("handlerCheckData", "cantCreateThread", threadID), err);
+				log.err("SAGOR DATABASE", getText("handlerCheckData", "cantCreateThread", threadID), err);
 			}
 		}
 	}
@@ -43,7 +43,7 @@ module.exports = async function (usersData, threadsData, event) {
 					return;
 
 				const userData = await usersData.create(senderID);
-				log.info("DATABASE", `New User: ${senderID} | ${userData.name} | ${config.database.type}`);
+				log.info("SAGOR DATABASE", `New User: ${senderID} | ${userData.name} | ${config.database.type}`);
 			}
 			else {
 				await findInCreatingUserData.promise;
@@ -51,7 +51,7 @@ module.exports = async function (usersData, threadsData, event) {
 		}
 		catch (err) {
 			if (err.name != "DATA_ALREADY_EXISTS")
-				log.err("DATABASE", getText("handlerCheckData", "cantCreateUser", senderID), err);
+				log.err("SAGOR DATABASE", getText("handlerCheckData", "cantCreateUser", senderID), err);
 		}
 	}
 };
