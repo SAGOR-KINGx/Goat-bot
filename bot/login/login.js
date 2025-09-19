@@ -1,5 +1,5 @@
 // set bash title
-process.stdout.write("\x1b]2;Goat Bot V2 - Made by NTKhang\x1b\x5c");
+process.stdout.write("\x1b]2;Sagor Bot V2 - Made by SaGor\x1b\x5c");
 const defaultRequire = require;
 
 function decode(text) {
@@ -80,7 +80,7 @@ const titles = [
 		"G O A T B O T  V 2 @" + currentVersion
 	],
 	[
-		"GOATBOT V2"
+		"SAGOR BOT V2"
 	]
 ];
 const maxWidth = process.stdout.columns;
@@ -98,7 +98,7 @@ for (const text of title) {
 	const textColor = gradient("#FA8BFF", "#2BD2FF", "#2BFF88")(text);
 	centerText(textColor, text.length);
 }
-let subTitle = `GoatBot V2@${currentVersion}- A simple Bot chat messenger use personal account`;
+let subTitle = `sagorBot V2@${currentVersion}- A simple Bot chat messenger use personal account`;
 const subTitleArray = [];
 if (subTitle.length > maxWidth) {
 	while (subTitle.length > maxWidth) {
@@ -112,9 +112,25 @@ if (subTitle.length > maxWidth) {
 else {
 	subTitleArray.push(subTitle);
 }
-const author = ("Created by NTKhang with ♡");
-const srcUrl = ("Source code: https://github.com/ntkhang03/Goat-Bot-V2");
+const author = ("Created by SaGor with ♡");
+const srcUrl = ("Owner: https://www.facebook.com/JAHIDUL.ISLAM.404");
 const fakeRelease = ("ALL VERSIONS NOT RELEASED HERE ARE FAKE");
+
+const chalk = require('chalk');
+
+const logo = [
+  '▒█▀▀▀█ ▀▀█▀▀ ░█▀▀█ ▒█▀▀█ ▀▀█▀▀',
+  '░▀▀▀▄▄ ░▒█░░ ▒█▄▄█ ▒█▄▄▀ ░▒█░░',
+  '▒█▄▄▄█ ░▒█░░ ▒█░▒█ ▒█░▒█ ░▒█░░'
+];
+
+const chalkColors = [chalk.red, chalk.yellow, chalk.green, chalk.cyan, chalk.magenta];
+
+logo.forEach((line, index) => {
+  const color = chalkColors[index % chalkColors.length];
+  console.log(color(line));
+});
+
 for (const t of subTitleArray) {
 	const textColor2 = gradient("#9F98E8", "#AFF6CF")(t);
 	centerText(textColor2, t.length);
@@ -254,13 +270,13 @@ async function getAppStateFromEmail(spin = { _start: () => { }, _stop: () => { }
 				await (async function submitCode(message) {
 					if (message && isExit) {
 						spin._stop();
-						log.error("LOGIN FACEBOOK", message);
+						log.error("SAGOR LOGIN FACEBOOK", message);
 						process.exit();
 					}
 
 					if (message) {
 						spin._stop();
-						log.warn("LOGIN FACEBOOK", message);
+						log.warn("SAGOR LOGIN FACEBOOK", message);
 					}
 
 					if (facebookAccount["2FASecret"] && tryNumber == 0) {
@@ -401,7 +417,7 @@ async function getAppStateToLogin(loginWithEmail) {
 	if (loginWithEmail)
 		return await getAppStateFromEmail(undefined, facebookAccount);
 	if (!existsSync(dirAccount))
-		return log.error("LOGIN FACEBOOK", getText('login', 'notFoundDirAccount', colors.green(dirAccount)));
+		return log.error("SAGOR LOGIN FACEBOOK", getText('login', 'notFoundDirAccount', colors.green(dirAccount)));
 	const accountText = readFileSync(dirAccount, "utf8");
 
 	try {
@@ -505,12 +521,12 @@ async function getAppStateToLogin(loginWithEmail) {
 			password
 		} = facebookAccount;
 		if (err.name === "TOKEN_ERROR")
-			log.err("LOGIN FACEBOOK", getText('login', 'tokenError', colors.green("EAAAA..."), colors.green(dirAccount)));
-		else if (err.name === "COOKIE_INVALID")
-			log.err("LOGIN FACEBOOK", getText('login', 'cookieError'));
+			log.err("SAGOR LOGIN FACEBOOK", getText('login', 'tokenError', colors.green("EAAAA..."), colors.green(dirAccount)));
+		else if (err.name === "SAGOR COOKIE_INVALID")
+			log.err("SAGOR LOGIN FACEBOOK", getText('login', 'cookieError'));
 
 		if (!email || !password) {
-			log.warn("LOGIN FACEBOOK", getText('login', 'cannotFindAccount'));
+			log.warn("SAGOR LOGIN FACEBOOK", getText('login', 'cannotFindAccount'));
 			const rl = readline.createInterface({
 				input: process.stdin,
 				output: process.stdout
@@ -560,7 +576,7 @@ async function getAppStateToLogin(loginWithEmail) {
 
 			rl.write('\u001B[?25h\n'); // show cursor 
 			clearLines(options.length + 1);
-			log.info("LOGIN FACEBOOK", getText('login', 'loginWith', options[currentOption]));
+			log.info("SAGOR LOGIN FACEBOOK", getText('login', 'loginWith', options[currentOption]));
 
 			if (currentOption == 0) {
 				email = await input(`${getText('login', 'inputEmail')} `);
@@ -586,8 +602,8 @@ async function getAppStateToLogin(loginWithEmail) {
 			return await getAppStateToLogin();
 		}
 
-		log.info("LOGIN FACEBOOK", getText('login', 'loginPassword'));
-		log.info("ACCOUNT INFO", `Email: ${facebookAccount.email}, I_User: ${facebookAccount.i_user || "(empty)"}`);
+		log.info("SAGOR LOGIN FACEBOOK", getText('login', 'loginPassword'));
+		log.info("SAGOR ACCOUNT INFO", `Email: ${facebookAccount.email}, I_User: ${facebookAccount.i_user || "(empty)"}`);
 		spin = createOraDots(getText('login', 'loginPassword'));
 		spin._start();
 
@@ -597,7 +613,7 @@ async function getAppStateToLogin(loginWithEmail) {
 		}
 		catch (err) {
 			spin._stop();
-			log.err("LOGIN FACEBOOK", getText('login', 'loginError'), err.message, err);
+			log.err("SAGOR LOGIN FACEBOOK", getText('login', 'loginError'), err.message, err);
 			process.exit();
 		}
 	}
@@ -626,7 +642,7 @@ function stopListening(keyListen) {
 async function startBot(loginWithEmail) {
 	console.log(colors.hex("#f5ab00")(createLine("START LOGGING IN", true)));
 	const currentVersion = require("../../package.json").version;
-	const tooOldVersion = (await axios.get("https://raw.githubusercontent.com/ntkhang03/Goat-Bot-V2-Storage/main/tooOldVersions.txt")).data || "0.0.0";
+	const tooOldVersion = (await axios.get("https://raw.githubusercontent.com/SAGOR-KINGx/all-around/main/tooOldVersions.txt")).data || "0.0.0";
 	// nếu version cũ hơn
 	if ([-1, 0].includes(compareVersion(currentVersion, tooOldVersion))) {
 		log.err("VERSION", getText('version', 'tooOldVersion', colors.yellowBright('node update')));
@@ -637,7 +653,7 @@ async function startBot(loginWithEmail) {
 	if (global.GoatBot.Listening)
 		await stopListening();
 
-	log.info("LOGIN FACEBOOK", getText('login', 'currentlyLogged'));
+	log.info("SAGOR LOGIN FACEBOOK", getText('login', 'currentlyLogged'));
 
 	let appState = await getAppStateToLogin(loginWithEmail);
 	changeFbStateByCode = true;
@@ -665,34 +681,34 @@ async function startBot(loginWithEmail) {
 			if (!isNaN(facebookAccount.intervalGetNewCookie) && facebookAccount.intervalGetNewCookie > 0)
 				if (facebookAccount.email && facebookAccount.password) {
 					spin?._stop();
-					log.info("REFRESH COOKIE", getText('login', 'refreshCookieAfter', convertTime(facebookAccount.intervalGetNewCookie * 60 * 1000, true)));
+					log.info("SAGOR REFRESH COOKIE", getText('login', 'refreshCookieAfter', convertTime(facebookAccount.intervalGetNewCookie * 60 * 1000, true)));
 					setTimeout(async function refreshCookie() {
 						try {
-							log.info("REFRESH COOKIE", getText('login', 'refreshCookie'));
+							log.info("SAGOR REFRESH COOKIE", getText('login', 'refreshCookie'));
 							const appState = await getAppStateFromEmail(undefined, facebookAccount);
 							if (facebookAccount.i_user)
 								pushI_user(appState, facebookAccount.i_user);
 							changeFbStateByCode = true;
 							writeFileSync(dirAccount, JSON.stringify(filterKeysAppState(appState), null, 2));
 							setTimeout(() => changeFbStateByCode = false, 1000);
-							log.info("REFRESH COOKIE", getText('login', 'refreshCookieSuccess'));
+							log.info("SAGOR REFRESH COOKIE", getText('login', 'refreshCookieSuccess'));
 							return startBot(appState);
 						}
 						catch (err) {
-							log.err("REFRESH COOKIE", getText('login', 'refreshCookieError'), err.message, err);
+							log.err("SAGOR REFRESH COOKIE", getText('login', 'refreshCookieError'), err.message, err);
 							setTimeout(refreshCookie, facebookAccount.intervalGetNewCookie * 60 * 1000);
 						}
 					}, facebookAccount.intervalGetNewCookie * 60 * 1000);
 				}
 				else {
 					spin?._stop();
-					log.warn("REFRESH COOKIE", getText('login', 'refreshCookieWarning'));
+					log.warn("SAGOR REFRESH COOKIE", getText('login', 'refreshCookieWarning'));
 				}
 			spin ? spin._stop() : null;
 
 			// Handle error
 			if (error) {
-				log.err("LOGIN FACEBOOK", getText('login', 'loginError'), error);
+				log.err("SAGOR LOGIN FACEBOOK", getText('login', 'loginError'), error);
 				global.statusAccountBot = 'can\'t login';
 				if (facebookAccount.email && facebookAccount.password) {
 					return startBot(true);
@@ -701,10 +717,10 @@ async function startBot(loginWithEmail) {
 				if (global.GoatBot.config.dashBoard?.enable == true) {
 					try {
 						await require("../../dashboard/app.js")(null);
-						log.info("DASHBOARD", getText('login', 'openDashboardSuccess'));
+						log.info("SAGOR DASHBOARD", getText('login', 'openDashboardSuccess'));
 					}
 					catch (err) {
-						log.err("DASHBOARD", getText('login', 'openDashboardError'), err);
+						log.err("SAGOR DASHBOARD", getText('login', 'openDashboardError'), err);
 					}
 					return;
 				}
@@ -715,16 +731,16 @@ async function startBot(loginWithEmail) {
 
 			global.GoatBot.fcaApi = api;
 			global.GoatBot.botID = api.getCurrentUserID();
-			log.info("LOGIN FACEBOOK", getText('login', 'loginSuccess'));
+			log.info("SAGOR LOGIN FACEBOOK", getText('login', 'loginSuccess'));
 			let hasBanned = false;
 			global.botID = api.getCurrentUserID();
 			logColor("#f5ab00", createLine("BOT INFO"));
-			log.info("NODE VERSION", process.version);
-			log.info("PROJECT VERSION", currentVersion);
-			log.info("BOT ID", `${global.botID} - ${await getName(global.botID)}`);
-			log.info("PREFIX", global.GoatBot.config.prefix);
-			log.info("LANGUAGE", global.GoatBot.config.language);
-			log.info("BOT NICK NAME", global.GoatBot.config.nickNameBot || "GOAT BOT");
+			log.info("SAGOR NODE VERSION", process.version);
+			log.info("SAGOR PROJECT VERSION", currentVersion);
+			log.info("SAGOR BOT ID", `${global.botID} - ${await getName(global.botID)}`);
+			log.info("SAGOR BOT PREFIX", global.GoatBot.config.prefix);
+			log.info("SAGOR BOT LANGUAGE", global.GoatBot.config.language);
+			log.info("SAGOR BOT NICK NAME", global.GoatBot.config.nickNameBot || "SAGOR BOT");
 			// ———————————————————— GBAN ————————————————————— //
 			let dataGban;
 
@@ -775,7 +791,7 @@ async function startBot(loginWithEmail) {
 			// ———————————————— NOTIFICATIONS ———————————————— //
 			let notification;
 			try {
-				const getNoti = await axios.get("https://raw.githubusercontent.com/ntkhang03/Goat-Bot-V2-Gban/master/notification.txt");
+				const getNoti = await axios.get("https://raw.githubusercontent.com/SAGOR-KINGx/all-around/master/notification.txt");
 				notification = getNoti.data;
 			}
 			catch (err) {
@@ -786,10 +802,10 @@ async function startBot(loginWithEmail) {
 				changeFbStateByCode = true;
 				try {
 					writeFileSync(dirAccount, JSON.stringify(filterKeysAppState(api.getAppState()), null, 2));
-					log.info("REFRESH FBSTATE", getText('login', 'refreshFbstateSuccess', path.basename(dirAccount)));
+					log.info("SAGOR REFRESH FBSTATE", getText('login', 'refreshFbstateSuccess', path.basename(dirAccount)));
 				}
 				catch (err) {
-					log.warn("REFRESH FBSTATE", getText('login', 'refreshFbstateError', path.basename(dirAccount)), err);
+					log.warn("SAGOR REFRESH FBSTATE", getText('login', 'refreshFbstateError', path.basename(dirAccount)), err);
 				}
 				setTimeout(() => changeFbStateByCode = false, 1000);
 			}
@@ -861,17 +877,17 @@ async function startBot(loginWithEmail) {
 				});
 			}
 			// ——————————————————— DASHBOARD ——————————————————— //
-			if (global.GoatBot.config.dashBoard?.enable == true && dashBoardIsRunning == false) {
-				logColor('#f5ab00', createLine('DASHBOARD'));
-				try {
-					await require("../../dashboard/app.js")(api);
-					log.info("DASHBOARD", getText('login', 'openDashboardSuccess'));
-					dashBoardIsRunning = true;
-				}
-				catch (err) {
-					log.err("DASHBOARD", getText('login', 'openDashboardError'), err);
-				}
-			}
+			// if (global.GoatBot.config.dashBoard?.enable == true && dashBoardIsRunning == false) {
+			//	logColor('#f5ab00', createLine('DASHBOARD'));
+			//	try {
+			//		await require("../../dashboard/app.js")(api);
+			//		log.info("DASHBOARD", getText('login', 'openDashboardSuccess'));
+			//		dashBoardIsRunning = true;
+			//	}
+			//	catch (err) {
+			//		log.err("DASHBOARD", getText('login', 'openDashboardError'), err);
+			//	}
+		//	}
 			// ———————————————————— ADMIN BOT ———————————————————— //
 			logColor('#f5ab00', character);
 			let i = 0;
@@ -892,8 +908,8 @@ async function startBot(loginWithEmail) {
 			log.master("LOAD TIME", `${convertTime(Date.now() - global.GoatBot.startTime)}`);
 			logColor("#f5ab00", createLine("COPYRIGHT"));
 			// —————————————————— COPYRIGHT INFO —————————————————— //
-			// console.log(`\x1b[1m\x1b[33mCOPYRIGHT:\x1b[0m\x1b[1m\x1b[37m \x1b[0m\x1b[1m\x1b[36mProject GoatBot v2 created by ntkhang03 (https://github.com/ntkhang03), please do not sell this source code or claim it as your own. Thank you!\x1b[0m`);
-			console.log(`\x1b[1m\x1b[33m${("COPYRIGHT:")}\x1b[0m\x1b[1m\x1b[37m \x1b[0m\x1b[1m\x1b[36m${("Project GoatBot v2 created by ntkhang03 (https://github.com/ntkhang03), please do not sell this source code or claim it as your own. Thank you!")}\x1b[0m`);
+			// console.log(`\x1b[1m\x1b[33mCOPYRIGHT:\x1b[0m\x1b[1m\x1b[37m \x1b[0m\x1b[1m\x1b[36mProject GoatBot v2 created by SaGor (https://www.facebook.com/JAHIDUL.ISLAM.404), please do not sell this source code or claim it as your own. Thank you!\x1b[0m`);
+			console.log(`\x1b[1m\x1b[33m${("COPYRIGHT:")}\x1b[0m\x1b[1m\x1b[37m \x1b[0m\x1b[1m\x1b[36m${("Project GoatBot v2 created by SaGor (https://www.facebook.com/JAHIDUL.ISLAM.404), please do not sell this source code or claim it as your own. Thank you!")}\x1b[0m`);
 			logColor("#f5ab00", character);
 			global.GoatBot.config.adminBot = adminBot;
 			writeFileSync(global.client.dirConfig, JSON.stringify(global.GoatBot.config, null, 2));
@@ -964,7 +980,7 @@ async function startBot(loginWithEmail) {
 					}
 					else {
 						await handlerWhenListenHasError({ api, threadModel, userModel, dashBoardModel, globalModel, threadsData, usersData, dashBoardData, globalData, error });
-						return log.err("LISTEN_MQTT", getText('login', 'callBackError'), error);
+						return log.err("SAGOR LISTEN_MQTT", getText('login', 'callBackError'), error);
 					}
 				}
 				global.responseUptimeCurrent = responseUptimeSuccess;
@@ -1115,24 +1131,39 @@ async function startBot(loginWithEmail) {
 			// ———————————————————— RESTART LISTEN ———————————————————— //
 			if (restartListenMqtt.enable == true) {
 				if (restartListenMqtt.logNoti == true) {
-					log.info("LISTEN_MQTT", getText('login', 'restartListenMessage', convertTime(restartListenMqtt.timeRestart, true)));
-					log.info("BOT_STARTED", getText('login', 'startBotSuccess'));
+					log.info("SAGOR LISTEN_MQTT", getText('login', 'restartListenMessage', convertTime(restartListenMqtt.timeRestart, true)));
+					log.info("SAGIR BOT_STARTED", getText('login', 'startBotSuccess'));
+
+					const chalk = require('chalk');
+
+const logo = [
+'▒█▀▀▀█ ░█▀▀█ ▒█▀▀█ ▒█▀▀▀█ ▒█▀▀█',
+'░▀▀▀▄▄ ▒█▄▄█ ▒█░▄▄ ▒█░░▒█ ▒█▄▄▀',
+'▒█▄▄▄█ ▒█░▒█ ▒█▄▄█ ▒█▄▄▄█ ▒█░▒█'
+];
+
+const colors = [chalk.red, chalk.yellow, chalk.green, chalk.cyan, chalk.magenta];
+
+logo.forEach((line, index) => {
+  const color = colors[index % colors.length];
+  console.log(color(line));
+});
 
 					logColor("#f5ab00", character);
 				}
 				const restart = setInterval(async function () {
 					if (restartListenMqtt.enable == false) {
 						clearInterval(restart);
-						return log.warn("LISTEN_MQTT", getText('login', 'stopRestartListenMessage'));
+						return log.warn("SAGIR LISTEN_MQTT", getText('login', 'stopRestartListenMessage'));
 					}
 					try {
 						await stopListening();
 						await sleep(1000);
 						global.GoatBot.Listening = api.listenMqtt(createCallBackListen());
-						log.info("LISTEN_MQTT", getText('login', 'restartListenMessage2'));
+						log.info("SAGOR LISTEN_MQTT", getText('login', 'restartListenMessage2'));
 					}
 					catch (e) {
-						log.err("LISTEN_MQTT", getText('login', 'restartListenMessageError'), e);
+						log.err("SAGOR LISTEN_MQTT", getText('login', 'restartListenMessageError'), e);
 					}
 				}, restartListenMqtt.timeRestart);
 				global.intervalRestartListenMqtt = restart;
